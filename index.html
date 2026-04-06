@@ -1,1 +1,1064 @@
 <meta http-equiv="refresh" content="0; url=t3-clinique.html">
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T3 Clinique — Médecine Générale</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── VARIABLES ─────────────────────────────────────── */
+:root {
+–white:   #FFFFFF;
+–off:     #F7F7F5;
+–light:   #EFEFEC;
+–border:  #E0DFDB;
+–muted:   #999890;
+–body:    #3A3A38;
+–dark:    #141412;
+–accent:  #2D5A8E;
+–accent2: #1A3D62;
+–line:    1px solid var(–border);
+}
+
+/* ─── RESET ─────────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+font-family:‘Instrument Sans’, sans-serif;
+background: var(–white);
+color: var(–body);
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { display:block; max-width:100%; }
+[id] { scroll-margin-top: 88px; }
+
+/* ─── SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background: var(–off); }
+::-webkit-scrollbar-thumb { background: var(–accent); border-radius:2px; }
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav {
+position: fixed; top:0; left:0; right:0; z-index:200;
+height: 88px;
+display: flex; align-items:center; justify-content:space-between;
+padding: 0 64px;
+background: rgba(255,255,255,0.96);
+backdrop-filter: blur(20px);
+border-bottom: var(–line);
+transition: border-color 0.4s;
+}
+
+.nav-logo {
+display:flex; align-items:baseline; gap:10px;
+}
+.nav-logo-mark {
+font-family:‘Cormorant Garamond’, serif;
+font-size: 1.75rem;
+font-weight: 300;
+color: var(–dark);
+letter-spacing: -0.02em;
+}
+.nav-logo-mark strong {
+font-weight: 600;
+color: var(–accent);
+}
+.nav-logo-sub {
+font-size: 0.68rem;
+text-transform: uppercase;
+letter-spacing: 0.18em;
+color: var(–muted);
+font-weight: 400;
+}
+
+.nav-links {
+display:flex; align-items:center; gap:40px; list-style:none;
+}
+.nav-links a {
+font-size:0.78rem; text-transform:uppercase; letter-spacing:0.12em;
+color: var(–muted); font-weight:400;
+transition: color 0.2s;
+position: relative;
+}
+.nav-links a::after {
+content:’’; position:absolute; bottom:-4px; left:0; right:0;
+height:1px; background: var(–accent);
+transform: scaleX(0); transform-origin: left;
+transition: transform 0.3s ease;
+}
+.nav-links a:hover { color: var(–dark); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-rdv {
+display:inline-flex; align-items:center; gap:8px;
+border: 1px solid var(–dark);
+padding: 10px 24px;
+font-size:0.76rem; text-transform:uppercase; letter-spacing:0.14em;
+color: var(–dark); font-weight:500;
+transition: background 0.25s, color 0.25s;
+}
+.nav-rdv:hover { background: var(–dark); color: var(–white); }
+.nav-rdv::after { display:none !important; }
+
+/* ─── HERO ───────────────────────────────────────────── */
+#accueil {
+padding-top: 88px;
+min-height: 100vh;
+display:grid;
+grid-template-columns: 1fr 480px;
+}
+
+.hero-content {
+display:flex; flex-direction:column; justify-content:center;
+padding: 80px 64px;
+border-right: var(–line);
+}
+
+.hero-eyebrow {
+display:flex; align-items:center; gap:16px;
+margin-bottom: 40px;
+}
+.hero-eyebrow-line {
+width:32px; height:1px; background: var(–accent);
+}
+.hero-eyebrow span {
+font-size:0.72rem; text-transform:uppercase; letter-spacing:0.2em;
+color: var(–accent); font-weight:500;
+}
+
+.hero-h1 {
+font-family:‘Cormorant Garamond’, serif;
+font-size: clamp(3.2rem, 5.5vw, 5.5rem);
+font-weight:300; line-height:1.05;
+color: var(–dark);
+letter-spacing:-0.02em;
+margin-bottom: 32px;
+}
+.hero-h1 em {
+font-style:italic; color: var(–accent);
+}
+
+.hero-p {
+font-size:1rem; line-height:1.8;
+color: var(–muted);
+max-width:480px;
+margin-bottom:48px;
+font-weight:300;
+}
+
+.hero-btns { display:flex; gap:16px; }
+
+.btn-fill {
+display:inline-flex; align-items:center; gap:10px;
+background: var(–accent);
+color: var(–white);
+padding:14px 32px;
+font-size:0.8rem; text-transform:uppercase; letter-spacing:0.14em;
+font-weight:500;
+transition: background 0.25s, transform 0.2s;
+}
+.btn-fill:hover { background: var(–accent2); transform:translateY(-2px); }
+
+.btn-ghost {
+display:inline-flex; align-items:center; gap:10px;
+border:1px solid var(–border);
+color: var(–body);
+padding:14px 32px;
+font-size:0.8rem; text-transform:uppercase; letter-spacing:0.14em;
+font-weight:400;
+transition: border-color 0.25s, color 0.25s;
+}
+.btn-ghost:hover { border-color: var(–dark); color: var(–dark); }
+
+.hero-metrics {
+display:flex; gap:0;
+margin-top:64px;
+border-top: var(–line);
+padding-top:40px;
+}
+.metric {
+flex:1;
+padding-right:32px;
+border-right: var(–line);
+}
+.metric:last-child { border-right:none; padding-right:0; padding-left:32px; }
+.metric:first-child { padding-left:0; }
+.metric-num {
+font-family:‘Cormorant Garamond’, serif;
+font-size:2.8rem; font-weight:300;
+color: var(–dark); line-height:1;
+margin-bottom:6px;
+}
+.metric-label {
+font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em;
+color: var(–muted);
+}
+
+/* Hero panel droit */
+.hero-panel {
+background: var(–off);
+display:flex; flex-direction:column;
+justify-content: flex-end;
+}
+
+.hero-panel-top {
+flex:1;
+display:flex; align-items:center; justify-content:center;
+position:relative; overflow:hidden;
+}
+
+.hero-cross-wrap {
+position:relative;
+width:160px; height:160px;
+}
+.hero-cross-h, .hero-cross-v {
+position:absolute; background: var(–border);
+border-radius:1px;
+}
+.hero-cross-h { top:50%; left:0; right:0; height:1px; transform:translateY(-50%); }
+.hero-cross-v { left:50%; top:0; bottom:0; width:1px; transform:translateX(-50%); }
+.hero-cross-dot {
+position:absolute; top:50%; left:50%;
+transform:translate(-50%,-50%);
+width:10px; height:10px;
+background: var(–accent); border-radius:50%;
+}
+.hero-cross-ring {
+position:absolute; top:50%; left:50%;
+transform:translate(-50%,-50%);
+width:40px; height:40px;
+border:1px solid var(–accent);
+border-radius:50%;
+opacity:0.4;
+animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+0%,100% { transform:translate(-50%,-50%) scale(1); opacity:0.4; }
+50% { transform:translate(-50%,-50%) scale(1.8); opacity:0.1; }
+}
+
+.hero-hours {
+border-top: var(–line);
+padding:32px 40px;
+}
+.hero-hours-title {
+font-size:0.7rem; text-transform:uppercase; letter-spacing:0.18em;
+color: var(–muted); margin-bottom:20px;
+}
+.hours-row {
+display:flex; justify-content:space-between; align-items:center;
+padding:10px 0; border-bottom: var(–line);
+font-size:0.85rem;
+}
+.hours-row:last-child { border-bottom:none; }
+.hours-row .day { color: var(–body); font-weight:400; }
+.hours-row .time { color: var(–dark); font-weight:500; font-size:0.8rem; }
+.hours-badge {
+display:inline-flex; align-items:center; gap:6px;
+background: #EEF4FF; color: var(–accent);
+padding:3px 10px; border-radius:20px;
+font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+}
+.hours-badge::before {
+content:’’; width:5px; height:5px; border-radius:50%;
+background: var(–accent); display:inline-block;
+}
+
+/* ─── SECTION BASE ──────────────────────────────────── */
+.section-eyebrow {
+display:flex; align-items:center; gap:16px;
+margin-bottom:20px;
+}
+.section-eyebrow-line { width:24px; height:1px; background: var(–accent); }
+.section-eyebrow span {
+font-size:0.7rem; text-transform:uppercase; letter-spacing:0.2em;
+color: var(–accent); font-weight:500;
+}
+
+.section-h2 {
+font-family:‘Cormorant Garamond’, serif;
+font-size: clamp(2rem, 3.5vw, 3.2rem);
+font-weight:300; line-height:1.1;
+color: var(–dark);
+letter-spacing:-0.01em;
+}
+.section-h2 em { font-style:italic; }
+
+/* ─── SERVICES ──────────────────────────────────────── */
+#services {
+border-top: var(–line);
+}
+
+.services-header {
+display:grid; grid-template-columns:1fr 1fr;
+border-bottom: var(–line);
+}
+.services-header-left {
+padding:64px 64px 64px 64px;
+border-right: var(–line);
+}
+.services-header-right {
+padding:64px;
+display:flex; align-items:flex-end;
+}
+.services-header-right p {
+font-size:1rem; line-height:1.75;
+color: var(–muted); font-weight:300;
+max-width:380px;
+}
+
+.services-grid {
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+}
+
+.service-item {
+padding:48px 40px;
+border-right: var(–line);
+border-bottom: var(–line);
+transition: background 0.3s;
+cursor:default;
+position:relative;
+overflow:hidden;
+}
+.service-item::before {
+content:’’;
+position:absolute; top:0; left:0; right:0; height:2px;
+background: var(–accent);
+transform: scaleX(0); transform-origin:left;
+transition: transform 0.4s ease;
+}
+.service-item:hover::before { transform:scaleX(1); }
+.service-item:hover { background: var(–off); }
+.service-item:nth-child(3n) { border-right:none; }
+.service-item:nth-child(4),
+.service-item:nth-child(5),
+.service-item:nth-child(6) { border-bottom:none; }
+
+.service-num {
+font-family:‘Cormorant Garamond’, serif;
+font-size:3rem; font-weight:300;
+color: var(–light); line-height:1;
+margin-bottom:24px;
+transition: color 0.3s;
+}
+.service-item:hover .service-num { color: var(–border); }
+
+.service-title {
+font-family:‘Cormorant Garamond’, serif;
+font-size:1.35rem; font-weight:400;
+color: var(–dark); margin-bottom:12px;
+}
+.service-desc {
+font-size:0.85rem; line-height:1.7;
+color: var(–muted); font-weight:300;
+}
+
+/* ─── ÉQUIPE ────────────────────────────────────────── */
+#equipe {
+border-top: var(–line);
+background: var(–dark);
+}
+
+.equipe-header {
+display:grid; grid-template-columns:1fr 1fr;
+padding:64px 64px 48px;
+border-bottom:1px solid rgba(255,255,255,0.08);
+align-items:end;
+}
+.equipe-header .section-eyebrow-line { background: rgba(255,255,255,0.3); }
+.equipe-header .section-eyebrow span { color: rgba(255,255,255,0.4); }
+.equipe-header .section-h2 { color: var(–white); }
+.equipe-header p {
+color: rgba(255,255,255,0.4);
+font-size:0.95rem; line-height:1.75; font-weight:300;
+max-width:360px;
+align-self:flex-end;
+}
+
+.team-grid {
+display:grid; grid-template-columns:repeat(4,1fr);
+}
+
+.team-card {
+border-right:1px solid rgba(255,255,255,0.07);
+border-bottom:1px solid rgba(255,255,255,0.07);
+overflow:hidden;
+transition: background 0.3s;
+}
+.team-card:hover { background: rgba(255,255,255,0.03); }
+.team-card:nth-child(4n) { border-right:none; }
+
+.team-avatar {
+height:220px;
+display:flex; align-items:center; justify-content:center;
+font-size:5rem;
+background: rgba(255,255,255,0.04);
+border-bottom:1px solid rgba(255,255,255,0.07);
+position:relative; overflow:hidden;
+}
+.team-avatar::after {
+content:’’;
+position:absolute; inset:0;
+background: linear-gradient(to bottom, transparent 50%, rgba(20,20,18,0.5));
+}
+
+.team-info { padding:28px 28px 32px; }
+.team-name {
+font-family:‘Cormorant Garamond’, serif;
+font-size:1.2rem; font-weight:400;
+color: var(–white); margin-bottom:5px;
+}
+.team-role {
+font-size:0.7rem; text-transform:uppercase; letter-spacing:0.14em;
+color: rgba(255,255,255,0.3); margin-bottom:14px;
+}
+.team-bio {
+font-size:0.82rem; line-height:1.65;
+color: rgba(255,255,255,0.35); font-weight:300;
+}
+
+/* ─── POURQUOI NOUS ─────────────────────────────────── */
+#pourquoi {
+border-top: var(–line);
+display:grid; grid-template-columns:1fr 1fr;
+}
+
+.pourquoi-left {
+padding:80px 64px;
+border-right: var(–line);
+background: var(–off);
+}
+.pourquoi-left .section-h2 { margin-bottom:48px; }
+
+.feature-list { display:flex; flex-direction:column; }
+.feature-item {
+display:flex; gap:24px; align-items:flex-start;
+padding:24px 0; border-bottom: var(–line);
+}
+.feature-item:last-child { border-bottom:none; }
+.feature-icon {
+width:36px; height:36px; min-width:36px;
+border:1px solid var(–border);
+display:flex; align-items:center; justify-content:center;
+font-size:1rem;
+margin-top:2px;
+}
+.feature-item h4 {
+font-family:‘Cormorant Garamond’, serif;
+font-size:1.1rem; color: var(–dark);
+margin-bottom:5px;
+}
+.feature-item p { font-size:0.83rem; line-height:1.65; color: var(–muted); }
+
+.pourquoi-right {
+padding:80px 64px;
+display:flex; flex-direction:column; justify-content:center;
+}
+.pourquoi-right .section-h2 { margin-bottom:40px; }
+.pourquoi-right > p {
+font-size:1rem; line-height:1.8;
+color: var(–muted); font-weight:300;
+margin-bottom:40px;
+}
+
+.trust-grid {
+display:grid; grid-template-columns:1fr 1fr; gap:1px;
+background: var(–border);
+border:var(–line);
+}
+.trust-item {
+background: var(–white);
+padding:28px 24px;
+text-align:center;
+}
+.trust-item-num {
+font-family:‘Cormorant Garamond’, serif;
+font-size:2.2rem; font-weight:300; color: var(–accent);
+line-height:1; margin-bottom:6px;
+}
+.trust-item-label {
+font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em;
+color: var(–muted);
+}
+
+/* ─── CONTACT ───────────────────────────────────────── */
+#contact {
+border-top: var(–line);
+display:grid; grid-template-columns:1fr 1fr;
+}
+
+.contact-info-col {
+padding:80px 64px;
+border-right: var(–line);
+background: var(–off);
+}
+.contact-info-col .section-h2 { margin-bottom:12px; }
+.contact-info-col > .subtitle {
+font-size:0.95rem; line-height:1.7;
+color: var(–muted); font-weight:300;
+margin-bottom:56px;
+}
+
+.info-blocks { display:flex; flex-direction:column; gap:0; }
+.info-block {
+display:flex; gap:20px; align-items:flex-start;
+padding:24px 0; border-bottom: var(–line);
+}
+.info-block:last-child { border-bottom:none; }
+.info-icon {
+width:40px; height:40px; min-width:40px;
+background: var(–white);
+border: var(–line);
+display:flex; align-items:center; justify-content:center;
+font-size:1rem;
+}
+.info-block h4 {
+font-size:0.68rem; text-transform:uppercase; letter-spacing:0.15em;
+color: var(–muted); margin-bottom:5px;
+}
+.info-block p { font-size:0.92rem; color: var(–dark); line-height:1.5; }
+
+.contact-form-col {
+padding:80px 64px;
+display:flex; flex-direction:column; justify-content:center;
+}
+.contact-form-col .section-h2 { margin-bottom:8px; }
+.contact-form-col > .subtitle {
+font-size:0.88rem; color: var(–muted);
+margin-bottom:40px; font-weight:300;
+}
+
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-group { margin-bottom:16px; }
+.form-group label {
+display:block;
+font-size:0.68rem; text-transform:uppercase; letter-spacing:0.14em;
+color: var(–muted); margin-bottom:8px; font-weight:500;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+width:100%;
+border: var(–line);
+background: var(–white);
+padding:12px 16px;
+font-family:‘Instrument Sans’, sans-serif;
+font-size:0.9rem; color: var(–dark);
+outline:none;
+transition: border-color 0.2s;
+-webkit-appearance:none;
+border-radius:0;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(–accent); }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(–muted); font-weight:300; }
+.form-group textarea { resize:vertical; min-height:100px; }
+.form-group select { cursor:pointer; }
+
+.btn-submit {
+width:100%; padding:16px;
+background: var(–accent); color: var(–white);
+border:none; cursor:pointer;
+font-family:‘Instrument Sans’, sans-serif;
+font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:500;
+transition: background 0.25s;
+margin-top:8px;
+}
+.btn-submit:hover { background: var(–accent2); }
+
+/* ─── FOOTER ────────────────────────────────────────── */
+footer {
+border-top: var(–line);
+padding:32px 64px;
+display:flex; align-items:center; justify-content:space-between;
+background: var(–white);
+}
+.footer-logo {
+font-family:‘Cormorant Garamond’, serif;
+font-size:1.2rem; font-weight:300; color: var(–dark);
+}
+.footer-logo strong { color: var(–accent); font-weight:600; }
+.footer-copy { font-size:0.78rem; color: var(–muted); }
+.footer-links { display:flex; gap:32px; }
+.footer-links a {
+font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em;
+color: var(–muted);
+transition: color 0.2s;
+}
+.footer-links a:hover { color: var(–dark); }
+
+/* ─── ANIMATIONS ─────────────────────────────────────── */
+.reveal {
+opacity:0; transform:translateY(24px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@keyframes fadeIn {
+from { opacity:0; transform:translateY(20px); }
+to   { opacity:1; transform:translateY(0); }
+}
+.hero-content > * {
+animation: fadeIn 0.8s ease both;
+}
+.hero-eyebrow { animation-delay:0.1s; }
+.hero-h1      { animation-delay:0.25s; }
+.hero-p       { animation-delay:0.4s; }
+.hero-btns    { animation-delay:0.5s; }
+.hero-metrics { animation-delay:0.6s; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width:1024px) {
+nav { padding:0 32px; }
+.hero-content { padding:60px 32px; }
+.services-header-left,
+.services-header-right,
+.pourquoi-left,
+.pourquoi-right,
+.contact-info-col,
+.contact-form-col { padding:48px 32px; }
+.equipe-header { padding:48px 32px 32px; }
+.team-info { padding:20px; }
+footer { padding:24px 32px; }
+}
+
+@media (max-width:768px) {
+nav .nav-links { display:none; }
+#accueil { grid-template-columns:1fr; }
+.hero-panel { display:none; }
+.services-header,
+#pourquoi,
+#contact { grid-template-columns:1fr; }
+.services-header-left { border-right:none; border-bottom:var(–line); }
+.services-grid { grid-template-columns:1fr 1fr; }
+.service-item:nth-child(2n) { border-right:none; }
+.service-item:nth-child(3n) { border-right:1px solid var(–border); }
+.service-item:nth-child(4),
+.service-item:nth-child(5),
+.service-item:nth-child(6) { border-bottom: var(–line); }
+.service-item:nth-child(5),
+.service-item:nth-child(6) { border-bottom:none; }
+.team-grid { grid-template-columns:1fr 1fr; }
+.team-card:nth-child(2n) { border-right:none; }
+.equipe-header { grid-template-columns:1fr; }
+.pourquoi-left { border-right:none; border-bottom:var(–line); }
+.contact-info-col { border-right:none; border-bottom:var(–line); }
+.hero-metrics { flex-direction:column; gap:20px; }
+.metric { border-right:none; padding:0; }
+.metric:last-child { padding-left:0; }
+footer { flex-direction:column; gap:16px; text-align:center; }
+.footer-links { flex-wrap:wrap; justify-content:center; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────── -->
+
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-mark"><strong>T3</strong> Clinique</span>
+    <span class="nav-logo-sub">Médecine Générale</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#equipe">Équipe</a></li>
+    <li><a href="#pourquoi">À propos</a></li>
+    <li><a href="#contact" class="nav-rdv">Rendez-vous</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────── -->
+
+<section id="accueil">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Clinique de médecine générale — Montréal</span>
+    </div>
+    <h1 class="hero-h1">
+      La santé,<br>
+      une <em>priorité</em><br>
+      partagée.
+    </h1>
+    <p class="hero-p">
+      T3 Clinique vous accueille dans un espace de soins moderne, 
+      bienveillant et accessible. Une équipe médicale dédiée, 
+      à votre écoute à chaque étape de votre parcours de santé.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-fill">Prendre rendez-vous</a>
+      <a href="#services" class="btn-ghost">Nos services</a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric">
+        <div class="metric-num">15+</div>
+        <div class="metric-label">Années d'expérience</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">3 500</div>
+        <div class="metric-label">Patients suivis</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">5</div>
+        <div class="metric-label">Médecins spécialisés</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div class="hero-panel-top">
+      <div class="hero-cross-wrap">
+        <div class="hero-cross-h"></div>
+        <div class="hero-cross-v"></div>
+        <div class="hero-cross-ring"></div>
+        <div class="hero-cross-dot"></div>
+      </div>
+    </div>
+    <div class="hero-hours">
+      <div class="hero-hours-title">Horaires d'ouverture</div>
+      <div class="hours-row">
+        <span class="day">Lundi — Vendredi</span>
+        <span class="time">8h – 19h</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Samedi</span>
+        <span class="time">9h – 13h</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Dimanche</span>
+        <span class="time">Fermé</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Statut</span>
+        <span class="hours-badge">Ouvert aujourd'hui</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────────────── -->
+
+<section id="services">
+  <div class="services-header">
+    <div class="services-header-left">
+      <div class="section-eyebrow reveal">
+        <div class="section-eyebrow-line"></div>
+        <span>Nos prestations</span>
+      </div>
+      <h2 class="section-h2 reveal">Des soins <em>complets</em><br>pour toute la famille</h2>
+    </div>
+    <div class="services-header-right reveal">
+      <p>De la consultation de routine à la prise en charge des pathologies chroniques, nous vous offrons un accompagnement global, personnalisé et humain.</p>
+    </div>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-item reveal">
+      <div class="service-num">01</div>
+      <div class="service-title">Médecine générale</div>
+      <div class="service-desc">Consultations adultes et enfants, diagnostic, suivi des maladies chroniques et bilans de santé annuels.</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">02</div>
+      <div class="service-title">Vaccination</div>
+      <div class="service-desc">Vaccinations obligatoires et recommandées pour tous les âges. Mise à jour des carnets de santé.</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">03</div>
+      <div class="service-title">Prévention & dépistage</div>
+      <div class="service-desc">Dépistages précoces, bilans cardiovasculaires, gestion du stress et conseils hygiéno-diététiques.</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">04</div>
+      <div class="service-title">Pédiatrie</div>
+      <div class="service-desc">Suivi de la croissance de 0 à 18 ans, soins courants et accompagnement des familles.</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">05</div>
+      <div class="service-title">Analyses & Examens</div>
+      <div class="service-desc">Prescriptions d'analyses biologiques, électrocardiogramme et interprétation des résultats.</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">06</div>
+      <div class="service-title">Visites à domicile</div>
+      <div class="service-desc">Déplacements pour patients à mobilité réduite ou nécessitant un suivi à domicile.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ÉQUIPE ─────────────────────────────────────── -->
+
+<section id="equipe">
+  <div class="equipe-header">
+    <div>
+      <div class="section-eyebrow reveal">
+        <div class="section-eyebrow-line"></div>
+        <span>Notre équipe</span>
+      </div>
+      <h2 class="section-h2 reveal">Des médecins <em>experts</em><br>à votre écoute</h2>
+    </div>
+    <p class="reveal">Une équipe pluridisciplinaire unie par une même valeur : placer le patient au centre de chaque décision médicale.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">👨‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">Dr. Martin Leclerc</div>
+        <div class="team-role">Médecin Généraliste</div>
+        <div class="team-bio">20 ans d'expérience. Spécialisation en médecine préventive et maladies chroniques.</div>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar" style="background:rgba(196,112,79,0.1);">👩‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">Dr. Sophie Bernard</div>
+        <div class="team-role">Pédiatre</div>
+        <div class="team-bio">Spécialisée dans le suivi de l'enfant de 0 à 18 ans, vaccination et développement.</div>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar" style="background:rgba(45,90,142,0.12);">👨‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">Dr. Ahmed Karim</div>
+        <div class="team-role">Médecin Généraliste</div>
+        <div class="team-bio">Expert en cardiologie préventive. Consultations en arabe et français.</div>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar" style="background:rgba(107,143,113,0.12);">👩‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">Dr. Claire Morin</div>
+        <div class="team-role">Médecine du Sport</div>
+        <div class="team-bio">Certificats médicaux, suivi des sportifs, nutrition et médecine du travail.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── POURQUOI ────────────────────────────────────── -->
+
+<section id="pourquoi">
+  <div class="pourquoi-left">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <span>Pourquoi nous choisir</span>
+    </div>
+    <h2 class="section-h2 reveal">Un engagement <em>fort</em><br>pour votre bien-être</h2>
+    <div class="feature-list">
+      <div class="feature-item reveal">
+        <div class="feature-icon">🕐</div>
+        <div>
+          <h4>Disponibilité 6j/7</h4>
+          <p>Une présence médicale élargie pour répondre à vos besoins, même le samedi matin.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">📋</div>
+        <div>
+          <h4>Suivi personnalisé</h4>
+          <p>Dossier médical centralisé et continuité des soins assurée entre tous nos praticiens.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">💻</div>
+        <div>
+          <h4>Téléconsultation</h4>
+          <p>Consultez un médecin depuis chez vous pour les situations non urgentes.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">♿</div>
+        <div>
+          <h4>Accessibilité totale</h4>
+          <p>Locaux entièrement accessibles PMR, interprétariat disponible sur demande.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pourquoi-right">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <span>En chiffres</span>
+    </div>
+    <h2 class="section-h2 reveal">T3 Clinique,<br>c'est <em>avant tout</em><br>une confiance</h2>
+    <p class="reveal">Depuis plus de 15 ans, nous construisons des relations durables avec nos patients, fondées sur l'écoute, la transparence et l'excellence médicale.</p>
+    <div class="trust-grid reveal">
+      <div class="trust-item">
+        <div class="trust-item-num">97%</div>
+        <div class="trust-item-label">Taux de satisfaction</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-num">48h</div>
+        <div class="trust-item-label">Délai moyen de RDV</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-num">15+</div>
+        <div class="trust-item-label">Années d'exercice</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-num">5</div>
+        <div class="trust-item-label">Praticiens dédiés</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────── -->
+
+<section id="contact">
+  <div class="contact-info-col">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <span>Nous trouver</span>
+    </div>
+    <h2 class="section-h2 reveal">Venez nous<br><em>rendre visite</em></h2>
+    <p class="subtitle reveal">Notre clinique est accessible en transports et dispose d'un parking gratuit. Nous vous accueillons dans un espace calme et confortable.</p>
+    <div class="info-blocks">
+      <div class="info-block reveal">
+        <div class="info-icon">📍</div>
+        <div>
+          <h4>Adresse</h4>
+          <p>1234 Rue Sainte-Catherine Ouest<br>Montréal, QC H3G 1P1</p>
+        </div>
+      </div>
+      <div class="info-block reveal">
+        <div class="info-icon">📞</div>
+        <div>
+          <h4>Téléphone</h4>
+          <p>(514) 555-0192</p>
+        </div>
+      </div>
+      <div class="info-block reveal">
+        <div class="info-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <p>contact@t3clinique.ca</p>
+        </div>
+      </div>
+      <div class="info-block reveal">
+        <div class="info-icon">🚇</div>
+        <div>
+          <h4>Accès</h4>
+          <p>Métro ligne verte — Peel (3 min à pied)<br>Bus 15, 24 — Arrêt Sainte-Catherine</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-col">
+    <div class="section-eyebrow reveal">
+      <div class="section-eyebrow-line"></div>
+      <span>Demande de rendez-vous</span>
+    </div>
+    <h2 class="section-h2 reveal">Réserver<br>votre <em>créneau</em></h2>
+    <p class="subtitle reveal">Remplissez ce formulaire. Nous vous confirmons votre rendez-vous sous 24h ouvrées.</p>
+
+```
+<div class="form-row">
+  <div class="form-group reveal">
+    <label>Prénom</label>
+    <input type="text" placeholder="Jean">
+  </div>
+  <div class="form-group reveal">
+    <label>Nom</label>
+    <input type="text" placeholder="Dupont">
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group reveal">
+    <label>Téléphone</label>
+    <input type="tel" placeholder="06 12 34 56 78">
+  </div>
+  <div class="form-group reveal">
+    <label>Email</label>
+    <input type="email" placeholder="jean@mail.fr">
+  </div>
+</div>
+<div class="form-group reveal">
+  <label>Motif de consultation</label>
+  <select>
+    <option value="">Sélectionner un motif</option>
+    <option>Consultation générale</option>
+    <option>Renouvellement d'ordonnance</option>
+    <option>Bilan de santé</option>
+    <option>Vaccination</option>
+    <option>Consultation pédiatrique</option>
+    <option>Certificat médical</option>
+    <option>Autre</option>
+  </select>
+</div>
+<div class="form-group reveal">
+  <label>Message (optionnel)</label>
+  <textarea placeholder="Précisez votre demande si nécessaire..."></textarea>
+</div>
+<button class="btn-submit reveal" id="submitBtn">Envoyer ma demande</button>
+```
+
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+
+<footer>
+  <div class="footer-logo"><strong>T3</strong> Clinique</div>
+  <div class="footer-copy">© 2026 T3 Clinique — Montréal, Québec</div>
+  <div class="footer-links">
+    <a href="#">Mentions légales</a>
+    <a href="#">Confidentialité</a>
+    <a href="#">Accessibilité</a>
+  </div>
+</footer>
+
+<!-- ── SCRIPTS ────────────────────────────────────── -->
+
+<script>
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.borderBottomColor =
+      window.scrollY > 40 ? 'var(--border)' : 'var(--border)';
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Form feedback
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    const prenom = document.querySelector('input[placeholder="Jean"]').value;
+    if (prenom.trim()) {
+      this.textContent = '✓ Demande envoyée — Confirmation sous 24h';
+      this.style.background = '#1A3D62';
+      this.disabled = true;
+    } else {
+      this.textContent = 'Veuillez renseigner vos coordonnées';
+      this.style.background = '#c0392b';
+      setTimeout(() => {
+        this.textContent = 'Envoyer ma demande';
+        this.style.background = 'var(--accent)';
+      }, 2500);
+    }
+  });
+</script>
+
+</body>
+</html>
