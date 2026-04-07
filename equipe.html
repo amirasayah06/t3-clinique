@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="T3 Clinique — Rencontrez notre équipe de médecins à Montréal : Dr. Amira Sayah, Dr. Fredic Patric Kenfack Nguefack et leurs collègues.">
+<meta name="keywords" content="médecins, équipe médicale, Dr Amira Sayah, Dr Kenfack, T3 Clinique Montréal">
+<title>T3 Clinique — Notre Équipe</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* TEAM GRID */
+.team-grid {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:2px;
+  background:var(--border); border:var(--line);
+}
+.team-card {
+  background:var(--white);
+  display:grid; grid-template-columns:280px 1fr;
+  transition:background 0.3s;
+}
+.team-card:hover { background:var(--beige); }
+.team-photo {
+  position:relative; overflow:hidden;
+  min-height:340px;
+}
+.team-photo img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
+.team-card:hover .team-photo img { transform:scale(1.04); }
+.team-photo-placeholder {
+  width:100%; height:100%; min-height:340px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:5rem;
+}
+.team-info { padding:40px 36px; display:flex; flex-direction:column; justify-content:center; }
+.team-role {
+  font-size:0.68rem; text-transform:uppercase; letter-spacing:0.18em;
+  color:var(--accent); margin-bottom:10px; font-weight:500;
+}
+.team-name {
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.8rem; font-weight:300; color:var(--dark);
+  line-height:1.1; margin-bottom:20px;
+  letter-spacing:-0.01em;
+}
+.team-bio { font-size:0.88rem; line-height:1.75; color:var(--muted); font-weight:300; margin-bottom:24px; }
+.team-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.team-tag {
+  border:var(--line); padding:5px 14px;
+  font-size:0.72rem; color:var(--brown); letter-spacing:0.06em;
+}
+.team-divider {
+  display:flex; align-items:center; gap:16px;
+  padding:24px 0; color:var(--muted);
+  font-size:0.75rem; letter-spacing:0.1em;
+}
+.team-divider::before, .team-divider::after {
+  content:''; flex:1; height:1px; background:var(--border);
+}
+
+/* VALEURS */
+#valeurs { background:var(–beige2); border-top:var(–line); }
+.valeurs-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:var(–line); margin-top:40px; }
+.valeur-item { padding:36px 28px; border-right:var(–line); }
+.valeur-item:last-child { border-right:none; }
+.valeur-icon { font-size:1.6rem; margin-bottom:16px; }
+.valeur-title { font-family:‘Cormorant Garamond’, serif; font-size:1.1rem; color:var(–dark); margin-bottom:10px; }
+.valeur-desc { font-size:0.82rem; line-height:1.65; color:var(–muted); font-weight:300; }
+
+/* PHOTO ÉQUIPE */
+.equipe-photo-band {
+display:grid; grid-template-columns:2fr 1fr 1fr;
+height:360px; border-top:var(–line); border-bottom:var(–line);
+}
+.epb-item { position:relative; overflow:hidden; }
+.epb-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
+.epb-item:hover img { transform:scale(1.05); }
+.epb-item + .epb-item { border-left:var(–line); }
+.epb-credit { position:absolute; bottom:6px; right:8px; font-size:0.58rem; color:rgba(255,255,255,0.45); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:2px; }
+
+/* REJOINDRE */
+#rejoindre { background:var(–dark); }
+#rejoindre h2 { color:var(–white); }
+#rejoindre h2 em { color:#C4A882; }
+#rejoindre .section-intro { color:rgba(253,251,247,0.5); }
+#rejoindre .section-tag span { color:rgba(253,251,247,0.4); }
+#rejoindre .section-tag-line { background:rgba(253,251,247,0.2); }
+
+@media(max-width:1100px){
+.team-card { grid-template-columns:200px 1fr; }
+}
+@media(max-width:900px){
+.team-grid { grid-template-columns:1fr; }
+.team-card { grid-template-columns:1fr; }
+.team-photo { min-height:260px; }
+.valeurs-grid { grid-template-columns:1fr 1fr; }
+.valeur-item:nth-child(2) { border-right:none; }
+.valeur-item:nth-child(3), .valeur-item:nth-child(4) { border-top:var(–line); }
+.equipe-photo-band { grid-template-columns:1fr 1fr; }
+.epb-item:last-child { display:none; }
+}
+@media(max-width:600px){
+.valeurs-grid { grid-template-columns:1fr; }
+.valeur-item { border-right:none; border-bottom:var(–line); }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><strong>T3</strong> Clinique</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="equipe.html" class="active">Équipe</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="contact.html" class="nav-cta">Rendez-vous</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="eyebrow fade-up d1"><div class="eyebrow-line"></div><span>Notre équipe</span></div>
+    <h1 class="fade-up d2">Des médecins <em>experts</em><br>à votre écoute</h1>
+    <p class="fade-up d3">Une équipe pluridisciplinaire unie par une même valeur : placer le patient au centre de chaque décision médicale, avec bienveillance et rigueur.</p>
+  </div>
+  <div class="page-header-img">
+    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=900&q=80" alt="Équipe médicale T3 Clinique Montréal">
+    <div style="position:absolute;bottom:8px;right:10px;font-size:0.6rem;color:rgba(255,255,255,0.4);background:rgba(0,0,0,0.3);padding:2px 7px;border-radius:2px;">📷 Unsplash — Usman Yousaf</div>
+  </div>
+</div>
+
+<!-- ÉQUIPE -->
+
+<section style="padding:0; background:var(--white);">
+  <div class="team-grid">
+
+```
+<!-- Dr. Amira Sayah -->
+<div class="team-card reveal">
+  <div class="team-photo">
+    <div class="team-photo-placeholder" style="background:linear-gradient(135deg,var(--beige2),var(--beige3));">👩‍⚕️</div>
+  </div>
+  <div class="team-info">
+    <div class="team-role">Directrice Médicale — Médecin Généraliste</div>
+    <div class="team-name">Dr. Amira Sayah</div>
+    <div class="team-bio">Fondatrice de T3 Clinique, le Dr. Sayah est diplômée de l'Université de Montréal en médecine familiale avec une spécialisation en santé préventive. Forte de 15 ans d'expérience, elle a développé une approche centrée sur le patient qui fait la réputation de la clinique. Passionnée par la médecine communautaire, elle intervient régulièrement auprès des populations vulnérables de Montréal.</div>
+    <div class="team-tags">
+      <span class="team-tag">Médecine préventive</span>
+      <span class="team-tag">Santé communautaire</span>
+      <span class="team-tag">Maladies chroniques</span>
+      <span class="team-tag">Français / Arabe / Anglais</span>
+    </div>
+  </div>
+</div>
+
+<!-- Dr. Fredic Patric Kenfack Nguefack -->
+<div class="team-card reveal">
+  <div class="team-photo">
+    <div class="team-photo-placeholder" style="background:linear-gradient(135deg,#e8e0d0,#d4c8b0);">👨‍⚕️</div>
+  </div>
+  <div class="team-info">
+    <div class="team-role">Médecin Généraliste — Pédiatrie</div>
+    <div class="team-name">Dr. Fredic Patric Kenfack Nguefack</div>
+    <div class="team-bio">Diplômé de l'Université de Yaoundé puis de l'Université McGill, le Dr. Kenfack Nguefack apporte une expertise internationale remarquable à T3 Clinique. Spécialisé en pédiatrie et en médecine tropicale, il assure le suivi de nombreuses familles issues de la communauté africaine de Montréal. Sa maîtrise de plusieurs langues lui permet d'offrir des consultations accessibles à tous.</div>
+    <div class="team-tags">
+      <span class="team-tag">Pédiatrie</span>
+      <span class="team-tag">Médecine tropicale</span>
+      <span class="team-tag">Suivi familial</span>
+      <span class="team-tag">Français / Anglais / Bassa</span>
+    </div>
+  </div>
+</div>
+
+<!-- Dr. Sophie Bernard -->
+<div class="team-card reveal">
+  <div class="team-photo">
+    <div class="team-photo-placeholder" style="background:linear-gradient(135deg,#ddd5c5,#c8bfa8);">👩‍⚕️</div>
+  </div>
+  <div class="team-info">
+    <div class="team-role">Médecin Généraliste — Cardiologie préventive</div>
+    <div class="team-name">Dr. Sophie Bernard</div>
+    <div class="team-bio">Diplômée de l'Université Laval, le Dr. Bernard s'est spécialisée en cardiologie préventive après une résidence au CHUM. Elle prend en charge les patients atteints de maladies cardiovasculaires et assure les bilans de santé complets. Reconnue pour sa pédagogie, elle accompagne ses patients vers de meilleures habitudes de vie.</div>
+    <div class="team-tags">
+      <span class="team-tag">Cardiologie préventive</span>
+      <span class="team-tag">Hypertension</span>
+      <span class="team-tag">Bilan de santé</span>
+      <span class="team-tag">Français / Anglais</span>
+    </div>
+  </div>
+</div>
+
+<!-- Dr. Ahmed Karim -->
+<div class="team-card reveal">
+  <div class="team-photo">
+    <div class="team-photo-placeholder" style="background:linear-gradient(135deg,#d8d0c0,#c4b89a);">👨‍⚕️</div>
+  </div>
+  <div class="team-info">
+    <div class="team-role">Médecin Généraliste — Médecine du sport</div>
+    <div class="team-name">Dr. Ahmed Karim</div>
+    <div class="team-bio">Après une formation en médecine générale à l'Université de Sherbrooke, le Dr. Karim a complété une formation complémentaire en médecine du sport. Il est responsable des certificats médicaux sportifs, du suivi des athlètes et de la médecine du travail. Il consulte en français, anglais et arabe.</div>
+    <div class="team-tags">
+      <span class="team-tag">Médecine du sport</span>
+      <span class="team-tag">Certificats médicaux</span>
+      <span class="team-tag">Médecine du travail</span>
+      <span class="team-tag">Français / Anglais / Arabe</span>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- BANDE PHOTOS -->
+
+<div class="equipe-photo-band">
+  <div class="epb-item">
+    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80" alt="Médecins en équipe">
+    <div class="epb-credit">Unsplash</div>
+  </div>
+  <div class="epb-item">
+    <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&q=80" alt="Consultation médicale">
+    <div class="epb-credit">Unsplash</div>
+  </div>
+  <div class="epb-item">
+    <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&q=80" alt="Soins médicaux">
+    <div class="epb-credit">Unsplash</div>
+  </div>
+</div>
+
+<!-- VALEURS -->
+
+<section id="valeurs">
+  <div class="section-tag reveal"><div class="section-tag-line"></div><span>Nos valeurs</span></div>
+  <h2 class="reveal">Ce qui nous <em>guide</em> au quotidien</h2>
+  <div class="valeurs-grid">
+    <div class="valeur-item reveal">
+      <div class="valeur-icon">❤️</div>
+      <div class="valeur-title">Bienveillance</div>
+      <div class="valeur-desc">Chaque patient est accueilli avec respect, écoute et empathie, sans jugement.</div>
+    </div>
+    <div class="valeur-item reveal">
+      <div class="valeur-icon">🔬</div>
+      <div class="valeur-title">Rigueur scientifique</div>
+      <div class="valeur-desc">Nos pratiques médicales sont fondées sur les données probantes les plus récentes.</div>
+    </div>
+    <div class="valeur-item reveal">
+      <div class="valeur-icon">🌍</div>
+      <div class="valeur-title">Inclusivité</div>
+      <div class="valeur-desc">Nous accueillons tous les patients, quelle que soit leur origine ou leur situation.</div>
+    </div>
+    <div class="valeur-item reveal">
+      <div class="valeur-icon">🤝</div>
+      <div class="valeur-title">Accessibilité</div>
+      <div class="valeur-desc">Des soins de qualité accessibles à tous, avec des horaires adaptés aux réalités de chacun.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REJOINDRE -->
+
+<section id="rejoindre">
+  <div class="section-tag reveal"><div class="section-tag-line"></div><span>Nous rejoindre</span></div>
+  <h2 class="reveal">Vous êtes <em>médecin</em> ?<br>Rejoignez notre équipe</h2>
+  <p class="section-intro reveal" style="color:rgba(253,251,247,0.5);">T3 Clinique est en constante évolution. Si vous partagez nos valeurs et souhaitez exercer dans un environnement stimulant et humain, contactez-nous.</p>
+  <a href="contact.html" class="btn-primary reveal" style="background:#C4A882;color:var(--dark);">Nous contacter →</a>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo"><strong>T3</strong> Clinique</div>
+      <p class="footer-desc">Clinique de médecine générale à Montréal, dédiée à votre santé et à celle de votre famille.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">1234 Rue Sainte-Catherine O.<br>Montréal, QC H3G 1P1</a></li>
+        <li><a href="tel:5145550192">(514) 555-0192</a></li>
+        <li><a href="mailto:contact@t3clinique.ca">contact@t3clinique.ca</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 T3 Clinique — Montréal, Québec</span>
+    <div class="footer-bottom-links">
+      <a href="#">Mentions légales</a>
+      <a href="#">Confidentialité</a>
+      <a href="#">Accessibilité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); }});
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
