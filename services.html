@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="T3 Clinique — Découvrez nos services médicaux : médecine générale, pédiatrie, vaccination, prévention et visites à domicile à Montréal.">
+<meta name="keywords" content="services médicaux, médecine générale, pédiatrie, vaccination, Montréal">
+<title>T3 Clinique — Services</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.services-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:var(--line); border-left:var(--line);
+}
+.service-block {
+  padding:48px 36px;
+  border-right:var(--line); border-bottom:var(--line);
+  position:relative; overflow:hidden;
+  transition:background 0.3s;
+}
+.service-block::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform 0.4s;
+}
+.service-block:hover::before { transform:scaleX(1); }
+.service-block:hover { background:var(--beige2); }
+.sb-num {
+  font-family:'Cormorant Garamond', serif;
+  font-size:3.5rem; font-weight:300; color:var(--beige3);
+  line-height:1; margin-bottom:24px; transition:color 0.3s;
+}
+.service-block:hover .sb-num { color:var(--beige3); }
+.sb-icon { font-size:1.6rem; margin-bottom:16px; }
+.sb-title {
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.25rem; color:var(--dark); margin-bottom:12px;
+}
+.sb-desc { font-size:0.85rem; line-height:1.75; color:var(--muted); font-weight:300; }
+.sb-list { margin-top:16px; list-style:none; display:flex; flex-direction:column; gap:8px; }
+.sb-list li { font-size:0.82rem; color:var(--muted); display:flex; gap:8px; align-items:flex-start; }
+.sb-list li::before { content:'—'; color:var(--accent); flex-shrink:0; }
+
+/* PHOTO SECTION */
+.photo-section {
+display:grid; grid-template-columns:1fr 1fr; gap:0;
+background:var(–beige2); border-top:var(–line); border-bottom:var(–line);
+}
+.photo-section-img { position:relative; overflow:hidden; min-height:380px; }
+.photo-section-img img { width:100%; height:100%; object-fit:cover; }
+.photo-section-img .photo-credit { position:absolute; bottom:8px; right:10px; font-size:0.6rem; color:rgba(255,255,255,0.45); background:rgba(0,0,0,0.3); padding:2px 7px; border-radius:2px; }
+.photo-section-content {
+padding:64px 6%;
+display:flex; flex-direction:column; justify-content:center;
+}
+.photo-section-content h2 { margin-bottom:16px; }
+.photo-section-content p { font-size:0.95rem; line-height:1.8; color:var(–muted); font-weight:300; margin-bottom:32px; }
+
+/* TARIFS */
+#tarifs { background:var(–white); }
+.tarifs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:40px; }
+.tarif-card {
+border:var(–line); padding:36px 28px; text-align:center;
+transition:transform 0.3s, box-shadow 0.3s;
+}
+.tarif-card:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(42,37,32,0.07); }
+.tarif-price {
+font-family:‘Cormorant Garamond’, serif;
+font-size:2.5rem; font-weight:300; color:var(–accent);
+line-height:1; margin-bottom:6px;
+}
+.tarif-label { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.12em; color:var(–muted); margin-bottom:16px; }
+.tarif-title { font-family:‘Cormorant Garamond’, serif; font-size:1.1rem; color:var(–dark); margin-bottom:12px; }
+.tarif-desc { font-size:0.82rem; line-height:1.65; color:var(–muted); font-weight:300; }
+
+@media(max-width:900px){
+.services-grid { grid-template-columns:1fr 1fr; }
+.photo-section { grid-template-columns:1fr; }
+.photo-section-img { min-height:260px; }
+.tarifs-grid { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:600px){
+.services-grid { grid-template-columns:1fr; }
+.tarifs-grid { grid-template-columns:1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><strong>T3</strong> Clinique</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="equipe.html">Équipe</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="contact.html" class="nav-cta">Rendez-vous</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="eyebrow fade-up d1"><div class="eyebrow-line"></div><span>Nos prestations</span></div>
+    <h1 class="fade-up d2">Des soins <em>complets</em><br>pour toute la famille</h1>
+    <p class="fade-up d3">De la consultation de routine à la prise en charge des pathologies chroniques, nous vous offrons un accompagnement global, personnalisé et humain.</p>
+  </div>
+  <div class="page-header-img">
+    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=900&q=80" alt="Services médicaux T3 Clinique">
+    <div style="position:absolute;bottom:8px;right:10px;font-size:0.6rem;color:rgba(255,255,255,0.4);background:rgba(0,0,0,0.3);padding:2px 7px;border-radius:2px;">📷 Unsplash — Hush Naidoo</div>
+  </div>
+</div>
+
+<!-- GRILLE SERVICES -->
+
+<section style="padding:0; background:var(--white);">
+  <div class="services-grid">
+    <div class="service-block reveal">
+      <div class="sb-num">01</div>
+      <div class="sb-icon">🩺</div>
+      <div class="sb-title">Médecine générale</div>
+      <div class="sb-desc">Consultations complètes pour adultes et enfants. Diagnostic, traitement et suivi personnalisé.</div>
+      <ul class="sb-list">
+        <li>Consultations sans et avec rendez-vous</li>
+        <li>Suivi des maladies chroniques</li>
+        <li>Bilans de santé annuels</li>
+        <li>Renouvellement d'ordonnances</li>
+      </ul>
+    </div>
+    <div class="service-block reveal">
+      <div class="sb-num">02</div>
+      <div class="sb-icon">💉</div>
+      <div class="sb-title">Vaccination</div>
+      <div class="sb-desc">Vaccinations obligatoires et recommandées pour tous les âges selon le calendrier de santé publique.</div>
+      <ul class="sb-list">
+        <li>Vaccins pour enfants et adultes</li>
+        <li>Vaccins de voyage</li>
+        <li>Mise à jour carnets de santé</li>
+        <li>Conseils pré-voyage</li>
+      </ul>
+    </div>
+    <div class="service-block reveal">
+      <div class="sb-num">03</div>
+      <div class="sb-icon">👶</div>
+      <div class="sb-title">Pédiatrie</div>
+      <div class="sb-desc">Suivi médical complet de l'enfant de la naissance à l'adolescence, avec accompagnement des parents.</div>
+      <ul class="sb-list">
+        <li>Suivi de croissance 0–18 ans</li>
+        <li>Soins courants pédiatriques</li>
+        <li>Bilans développementaux</li>
+        <li>Soutien aux familles</li>
+      </ul>
+    </div>
+    <div class="service-block reveal">
+      <div class="sb-num">04</div>
+      <div class="sb-icon">🫀</div>
+      <div class="sb-title">Prévention & dépistage</div>
+      <div class="sb-desc">Dépistages précoces et bilans de santé pour anticiper et prévenir les maladies.</div>
+      <ul class="sb-list">
+        <li>Bilan cardiovasculaire</li>
+        <li>Dépistage diabète, cholestérol</li>
+        <li>Gestion du stress et nutrition</li>
+        <li>Conseils hygiéno-diététiques</li>
+      </ul>
+    </div>
+    <div class="service-block reveal">
+      <div class="sb-num">05</div>
+      <div class="sb-icon">🧬</div>
+      <div class="sb-title">Analyses & Examens</div>
+      <div class="sb-desc">Prescription et interprétation d'examens biologiques et techniques pour un diagnostic précis.</div>
+      <ul class="sb-list">
+        <li>Prises de sang & analyses urinaires</li>
+        <li>Électrocardiogramme (ECG)</li>
+        <li>Spirométrie</li>
+        <li>Interprétation des résultats</li>
+      </ul>
+    </div>
+    <div class="service-block reveal">
+      <div class="sb-num">06</div>
+      <div class="sb-icon">🏠</div>
+      <div class="sb-title">Visites à domicile</div>
+      <div class="sb-desc">Déplacements médicaux pour patients à mobilité réduite ou nécessitant un suivi à domicile.</div>
+      <ul class="sb-list">
+        <li>Patients à mobilité réduite</li>
+        <li>Personnes âgées</li>
+        <li>Suivi post-hospitalier</li>
+        <li>Zone de desserte : Grand Montréal</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO + TEXTE -->
+
+<div class="photo-section">
+  <div class="photo-section-img">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&q=80" alt="Médecin avec patient à T3 Clinique">
+    <div class="photo-credit">📷 Unsplash — ThisisEngineering</div>
+  </div>
+  <div class="photo-section-content reveal">
+    <div class="section-tag"><div class="section-tag-line"></div><span>Notre approche</span></div>
+    <h2>Une médecine <em>humaine</em> et préventive</h2>
+    <p>Chez T3 Clinique, nous croyons que la meilleure médecine est celle qui anticipe. Nos médecins prennent le temps d'écouter, d'expliquer et d'accompagner chaque patient dans une démarche de santé durable.</p>
+    <a href="contact.html" class="btn-primary">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<!-- TARIFS -->
+
+<section id="tarifs">
+  <div class="section-tag reveal"><div class="section-tag-line"></div><span>Tarification</span></div>
+  <h2 class="reveal">Consultations <em>accessibles</em></h2>
+  <p class="section-intro reveal">La plupart de nos services sont couverts par la RAMQ. Voici un aperçu de nos tarifs pour les services non couverts.</p>
+  <div class="tarifs-grid">
+    <div class="tarif-card reveal">
+      <div class="tarif-price">Couvert</div>
+      <div class="tarif-label">RAMQ</div>
+      <div class="tarif-title">Consultation générale</div>
+      <div class="tarif-desc">Consultations médicales couvertes par la RAMQ pour les résidents du Québec.</div>
+    </div>
+    <div class="tarif-card reveal">
+      <div class="tarif-price">85$</div>
+      <div class="tarif-label">Par consultation</div>
+      <div class="tarif-title">Certificat médical</div>
+      <div class="tarif-desc">Certificats médicaux, formulaires d'assurance, rapports médicaux administratifs.</div>
+    </div>
+    <div class="tarif-card reveal">
+      <div class="tarif-price">120$</div>
+      <div class="tarif-label">Par visite</div>
+      <div class="tarif-title">Visite à domicile</div>
+      <div class="tarif-desc">Déplacement à domicile pour les patients à mobilité réduite sur le Grand Montréal.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo"><strong>T3</strong> Clinique</div>
+      <p class="footer-desc">Clinique de médecine générale à Montréal, dédiée à votre santé et à celle de votre famille.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">1234 Rue Sainte-Catherine O.<br>Montréal, QC H3G 1P1</a></li>
+        <li><a href="tel:5145550192">(514) 555-0192</a></li>
+        <li><a href="mailto:contact@t3clinique.ca">contact@t3clinique.ca</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 T3 Clinique — Montréal, Québec</span>
+    <div class="footer-bottom-links">
+      <a href="#">Mentions légales</a>
+      <a href="#">Confidentialité</a>
+      <a href="#">Accessibilité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); }});
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
