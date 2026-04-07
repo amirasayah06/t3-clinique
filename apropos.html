@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="T3 Clinique — À propos de notre clinique médicale à Montréal. Notre histoire, notre mission et nos engagements envers la santé.">
+<meta name="keywords" content="à propos, T3 Clinique, histoire, mission, valeurs, Montréal">
+<title>T3 Clinique — À Propos</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* HISTOIRE */
+.histoire-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:0;
+  border-top:var(--line); border-bottom:var(--line);
+}
+.histoire-content {
+  padding:80px 6%;
+  border-right:var(--line);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.histoire-content p { font-size:0.98rem; line-height:1.85; color:var(--muted); font-weight:300; margin-bottom:20px; }
+.histoire-img { position:relative; overflow:hidden; min-height:500px; }
+.histoire-img img { width:100%; height:100%; object-fit:cover; }
+.histoire-img .photo-credit { position:absolute; bottom:8px; right:10px; font-size:0.6rem; color:rgba(255,255,255,0.45); background:rgba(0,0,0,0.3); padding:2px 7px; border-radius:2px; }
+
+/* TIMELINE */
+#timeline { background:var(–white); }
+.timeline { position:relative; margin-top:48px; }
+.timeline::before {
+content:’’; position:absolute; left:50%; top:0; bottom:0;
+width:1px; background:var(–border); transform:translateX(-50%);
+}
+.tl-item {
+display:grid; grid-template-columns:1fr 60px 1fr;
+align-items:center; margin-bottom:48px;
+}
+.tl-left { text-align:right; padding-right:32px; }
+.tl-right { padding-left:32px; }
+.tl-dot {
+width:12px; height:12px; background:var(–accent); border-radius:50%;
+margin:0 auto; position:relative; z-index:1;
+border:2px solid var(–beige);
+box-shadow:0 0 0 4px var(–beige3);
+}
+.tl-year {
+font-family:‘Cormorant Garamond’, serif;
+font-size:2rem; font-weight:300; color:var(–accent);
+line-height:1; margin-bottom:8px;
+}
+.tl-title {
+font-family:‘Cormorant Garamond’, serif;
+font-size:1.1rem; color:var(–dark); margin-bottom:8px;
+}
+.tl-desc { font-size:0.82rem; line-height:1.65; color:var(–muted); font-weight:300; }
+.tl-item:nth-child(even) .tl-left { order:3; text-align:left; padding-right:0; padding-left:32px; }
+.tl-item:nth-child(even) .tl-right { order:1; text-align:right; padding-left:0; padding-right:32px; }
+.tl-item:nth-child(even) .tl-dot { order:2; }
+
+/* ENGAGEMENTS */
+#engagements { background:var(–beige2); border-top:var(–line); border-bottom:var(–line); }
+.engagements-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:40px; }
+.eng-card { background:var(–white); border:var(–line); padding:40px 32px; }
+.eng-icon { font-size:2rem; margin-bottom:20px; }
+.eng-title { font-family:‘Cormorant Garamond’, serif; font-size:1.2rem; color:var(–dark); margin-bottom:12px; }
+.eng-desc { font-size:0.85rem; line-height:1.75; color:var(–muted); font-weight:300; }
+
+/* CHIFFRES */
+#chiffres { background:var(–dark); }
+#chiffres h2 { color:var(–white); }
+#chiffres h2 em { color:#C4A882; }
+.chiffres-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid rgba(255,255,255,0.08); margin-top:48px; }
+.chiffre-item { padding:40px 28px; text-align:center; border-right:1px solid rgba(255,255,255,0.08); }
+.chiffre-item:last-child { border-right:none; }
+.chiffre-num { font-family:‘Cormorant Garamond’, serif; font-size:3rem; font-weight:300; color:#C4A882; line-height:1; margin-bottom:8px; }
+.chiffre-label { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:rgba(253,251,247,0.4); }
+
+/* PHOTO APROPOS */
+.apropos-photo { position:relative; overflow:hidden; height:400px; border-top:var(–line); border-bottom:var(–line); }
+.apropos-photo img { width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+.apropos-photo .photo-credit { position:absolute; bottom:8px; right:10px; font-size:0.6rem; color:rgba(255,255,255,0.45); background:rgba(0,0,0,0.3); padding:2px 7px; border-radius:2px; }
+.apropos-photo-overlay {
+position:absolute; inset:0;
+background:linear-gradient(to right, rgba(42,37,32,0.6), transparent);
+display:flex; align-items:center; padding:6%;
+}
+.apropos-photo-overlay blockquote {
+font-family:‘Cormorant Garamond’, serif;
+font-size:clamp(1.5rem,3vw,2.5rem); font-weight:300; font-style:italic;
+color:white; max-width:600px; line-height:1.3;
+}
+.apropos-photo-overlay cite {
+display:block; margin-top:16px;
+font-family:‘Jost’, sans-serif; font-size:0.78rem; font-style:normal;
+color:rgba(255,255,255,0.6); letter-spacing:0.1em;
+}
+
+@media(max-width:900px){
+.histoire-grid { grid-template-columns:1fr; }
+.histoire-img { min-height:280px; order:-1; }
+.histoire-content { border-right:none; border-bottom:var(–line); }
+.timeline::before { left:20px; }
+.tl-item { grid-template-columns:30px 1fr; }
+.tl-left { display:none; }
+.tl-item:nth-child(even) .tl-left { display:none; }
+.tl-item:nth-child(even) .tl-right { order:2; text-align:left; padding-right:0; padding-left:20px; }
+.tl-item:nth-child(even) .tl-dot { order:1; }
+.tl-right { padding-left:20px; }
+.engagements-grid { grid-template-columns:1fr; }
+.chiffres-grid { grid-template-columns:1fr 1fr; }
+.chiffre-item:nth-child(2) { border-right:none; }
+.chiffre-item:nth-child(3), .chiffre-item:nth-child(4) { border-top:1px solid rgba(255,255,255,0.08); }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><strong>T3</strong> Clinique</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="equipe.html">Équipe</a></li>
+    <li><a href="apropos.html" class="active">À propos</a></li>
+    <li><a href="contact.html" class="nav-cta">Rendez-vous</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="eyebrow fade-up d1"><div class="eyebrow-line"></div><span>Notre histoire</span></div>
+    <h1 class="fade-up d2">Une clinique <em>ancrée</em><br>dans sa communauté</h1>
+    <p class="fade-up d3">Depuis 2010, T3 Clinique accompagne les Montréalais avec une médecine générale accessible, humaine et de qualité.</p>
+  </div>
+  <div class="page-header-img">
+    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=900&q=80" alt="Bâtiment T3 Clinique Montréal">
+    <div style="position:absolute;bottom:8px;right:10px;font-size:0.6rem;color:rgba(255,255,255,0.4);background:rgba(0,0,0,0.3);padding:2px 7px;border-radius:2px;">📷 Unsplash — Adhy Savala</div>
+  </div>
+</div>
+
+<!-- HISTOIRE -->
+
+<div class="histoire-grid">
+  <div class="histoire-content reveal">
+    <div class="section-tag"><div class="section-tag-line"></div><span>Qui sommes-nous</span></div>
+    <h2>Fondée sur la <em>confiance</em></h2>
+    <p>T3 Clinique a été fondée en 2010 par le Dr. Amira Sayah, avec une vision simple : offrir des soins médicaux de qualité, accessibles à tous les Montréalais, dans un environnement chaleureux et respectueux.</p>
+    <p>En quinze ans, la clinique est passée de deux médecins à une équipe pluridisciplinaire de cinq praticiens, servant plus de 3 500 patients actifs dans le quartier Sainte-Catherine et ses environs.</p>
+    <p>Notre force réside dans la diversité de notre équipe, reflet de la diversité de Montréal. Nous offrons des consultations en français, anglais, arabe et bassa, pour que chaque patient puisse s'exprimer dans la langue dans laquelle il se sent le mieux compris.</p>
+  </div>
+  <div class="histoire-img">
+    <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=900&q=80" alt="Intérieur T3 Clinique">
+    <div class="photo-credit">📷 Unsplash — Online Marketing</div>
+  </div>
+</div>
+
+<!-- CITATION -->
+
+<div class="apropos-photo">
+  <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=1400&q=80" alt="T3 Clinique Montréal engagement médical">
+  <div class="photo-credit">📷 Unsplash — National Cancer Institute</div>
+  <div class="apropos-photo-overlay">
+    <blockquote>
+      "La médecine n'est pas seulement une science, c'est un art qui exige du cœur autant que de la compétence."
+      <cite>— Dr. Amira Sayah, Fondatrice de T3 Clinique</cite>
+    </blockquote>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+
+<section id="timeline">
+  <div class="section-tag reveal"><div class="section-tag-line"></div><span>Notre parcours</span></div>
+  <h2 class="reveal">Quinze ans <em>d'excellence</em></h2>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-left">
+        <div class="tl-year">2010</div>
+        <div class="tl-title">Fondation de T3 Clinique</div>
+        <div class="tl-desc">Ouverture de la clinique par le Dr. Amira Sayah avec deux médecins et une équipe de trois personnes.</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-right"></div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-left"></div>
+      <div class="tl-dot"></div>
+      <div class="tl-right">
+        <div class="tl-year">2014</div>
+        <div class="tl-title">Agrandissement des locaux</div>
+        <div class="tl-desc">Extension de la surface et ajout de deux nouvelles salles de consultation pour répondre à la demande croissante.</div>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-left">
+        <div class="tl-year">2017</div>
+        <div class="tl-title">Arrivée du Dr. Kenfack Nguefack</div>
+        <div class="tl-desc">Renforcement de l'équipe avec l'expertise pédiatrique et internationale du Dr. Fredic Patric Kenfack Nguefack.</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-right"></div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-left"></div>
+      <div class="tl-dot"></div>
+      <div class="tl-right">
+        <div class="tl-year">2021</div>
+        <div class="tl-title">Lancement de la téléconsultation</div>
+        <div class="tl-desc">Mise en place des consultations à distance pour offrir un accès aux soins pendant et après la pandémie.</div>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-left">
+        <div class="tl-year">2026</div>
+        <div class="tl-title">Aujourd'hui</div>
+        <div class="tl-desc">5 médecins, 3 500 patients actifs, et un engagement renouvelé envers la santé communautaire montréalaise.</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-right"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+
+<section id="engagements">
+  <div class="section-tag reveal"><div class="section-tag-line"></div><span>Nos engagements</span></div>
+  <h2 class="reveal">Ce à quoi nous <em>croyons</em></h2>
+  <div class="engagements-grid">
+    <div class="eng-card reveal">
+      <div class="eng-icon">🌱</div>
+      <div class="eng-title">Médecine durable</div>
+      <div class="eng-desc">Nous réduisons notre empreinte écologique en privilégiant les ordonnances numériques, la téléconsultation et des pratiques écoresponsables dans nos locaux.</div>
+    </div>
+    <div class="eng-card reveal">
+      <div class="eng-icon">🤝</div>
+      <div class="eng-title">Implication communautaire</div>
+      <div class="eng-desc">T3 Clinique participe chaque année à des cliniques de vaccination gratuites et à des journées de dépistage dans les quartiers défavorisés de Montréal.</div>
+    </div>
+    <div class="eng-card reveal">
+      <div class="eng-icon">📚</div>
+      <div class="eng-title">Formation continue</div>
+      <div class="eng-desc">Tous nos médecins suivent des formations annuelles pour rester à la pointe des avancées médicales et offrir des soins basés sur les meilleures pratiques.</div>
+    </div>
+    <div class="eng-card reveal">
+      <div class="eng-icon">♿</div>
+      <div class="eng-title">Accessibilité universelle</div>
+      <div class="eng-desc">Nos locaux sont entièrement accessibles aux personnes à mobilité réduite. Nous proposons également l'interprétariat médical sur demande.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES -->
+
+<section id="chiffres">
+  <div class="section-tag reveal" style="justify-content:center;"><div class="section-tag-line" style="background:rgba(253,251,247,0.2);"></div><span style="color:rgba(253,251,247,0.4);">En chiffres</span></div>
+  <h2 class="reveal" style="text-align:center;">T3 Clinique,<br>c'est <em>avant tout</em> une confiance</h2>
+  <div class="chiffres-grid reveal">
+    <div class="chiffre-item"><div class="chiffre-num">15+</div><div class="chiffre-label">Années d'exercice</div></div>
+    <div class="chiffre-item"><div class="chiffre-num">3 500</div><div class="chiffre-label">Patients actifs</div></div>
+    <div class="chiffre-item"><div class="chiffre-num">97%</div><div class="chiffre-label">Taux de satisfaction</div></div>
+    <div class="chiffre-item"><div class="chiffre-num">48h</div><div class="chiffre-label">Délai moyen de RDV</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo"><strong>T3</strong> Clinique</div>
+      <p class="footer-desc">Clinique de médecine générale à Montréal, dédiée à votre santé et à celle de votre famille.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">1234 Rue Sainte-Catherine O.<br>Montréal, QC H3G 1P1</a></li>
+        <li><a href="tel:5145550192">(514) 555-0192</a></li>
+        <li><a href="mailto:contact@t3clinique.ca">contact@t3clinique.ca</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 T3 Clinique — Montréal, Québec</span>
+    <div class="footer-bottom-links">
+      <a href="#">Mentions légales</a>
+      <a href="#">Confidentialité</a>
+      <a href="#">Accessibilité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); }});
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
