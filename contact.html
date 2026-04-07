@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="T3 Clinique — Contactez-nous et prenez rendez-vous. 1234 Rue Sainte-Catherine Ouest, Montréal. Tél : (514) 555-0192.">
+<meta name="keywords" content="contact, rendez-vous, T3 Clinique, Montréal, téléphone, adresse">
+<title>T3 Clinique — Contact & Rendez-vous</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* CONTACT GRID */
+.contact-main {
+  display:grid; grid-template-columns:1fr 1fr; min-height:calc(100vh - 88px);
+  padding-top:88px;
+}
+.contact-left {
+  background:var(--beige2);
+  padding:72px 6%;
+  border-right:var(--line);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.contact-left h2 { margin-bottom:10px; }
+.contact-left .subtitle { font-size:0.95rem; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:48px; }
+.info-blocks { display:flex; flex-direction:column; gap:0; }
+.info-block { display:flex; gap:20px; align-items:flex-start; padding:22px 0; border-bottom:var(--line); }
+.info-block:last-child { border-bottom:none; }
+.info-icon {
+  width:42px; height:42px; min-width:42px;
+  background:var(--white); border:var(--line);
+  display:flex; align-items:center; justify-content:center; font-size:1rem;
+}
+.info-block h4 { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--muted); margin-bottom:5px; font-weight:500; }
+.info-block p { font-size:0.92rem; color:var(--dark); line-height:1.6; }
+.info-block a { color:var(--accent); transition:color 0.2s; }
+.info-block a:hover { color:var(--dark); }
+
+/* MAP PLACEHOLDER */
+.map-placeholder {
+margin-top:36px;
+background:var(–beige3);
+border:var(–line);
+height:220px;
+display:flex; flex-direction:column; align-items:center; justify-content:center;
+gap:10px; color:var(–muted);
+position:relative; overflow:hidden;
+}
+.map-placeholder img { width:100%; height:100%; object-fit:cover; opacity:0.6; position:absolute; inset:0; }
+.map-placeholder-content { position:relative; z-index:1; text-align:center; }
+.map-placeholder-content .map-icon { font-size:2rem; margin-bottom:8px; }
+.map-placeholder-content p { font-size:0.8rem; font-weight:500; }
+.map-placeholder-content small { font-size:0.72rem; opacity:0.7; }
+
+/* FORM */
+.contact-right {
+background:var(–white);
+padding:72px 6%;
+display:flex; flex-direction:column; justify-content:center;
+}
+.contact-right h2 { margin-bottom:8px; }
+.contact-right .subtitle { font-size:0.88rem; color:var(–muted); margin-bottom:36px; font-weight:300; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-group { margin-bottom:16px; }
+.form-group label { display:block; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.14em; color:var(–muted); margin-bottom:8px; font-weight:500; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+width:100%; border:var(–line); background:var(–beige);
+padding:12px 16px; font-family:‘Jost’, sans-serif; font-size:0.9rem; color:var(–dark);
+outline:none; transition:border-color 0.2s; border-radius:0; -webkit-appearance:none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color:var(–accent); background:var(–white); }
+.form-group input::placeholder, .form-group textarea::placeholder { color:var(–muted); font-weight:300; }
+.form-group textarea { resize:vertical; min-height:110px; }
+.form-group select { cursor:pointer; color:var(–dark); }
+.btn-submit {
+width:100%; padding:16px; background:var(–accent); color:var(–white);
+border:none; cursor:pointer; font-family:‘Jost’, sans-serif;
+font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:500;
+transition:background 0.25s; margin-top:8px;
+}
+.btn-submit:hover { background:var(–dark); }
+.form-note { font-size:0.75rem; color:var(–muted); margin-top:12px; text-align:center; }
+
+/* HORAIRES */
+#horaires { background:var(–dark); border-top:1px solid rgba(255,255,255,0.08); }
+#horaires h2 { color:var(–white); }
+#horaires h2 em { color:#C4A882; }
+.horaires-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,0.08); margin-top:40px; }
+.horaire-item {
+padding:28px 32px; border-right:1px solid rgba(255,255,255,0.08);
+border-bottom:1px solid rgba(255,255,255,0.08);
+display:flex; justify-content:space-between; align-items:center;
+}
+.horaire-item:nth-child(2n) { border-right:none; }
+.horaire-item:nth-last-child(-n+2) { border-bottom:none; }
+.horaire-day { font-size:0.85rem; color:rgba(253,251,247,0.6); }
+.horaire-time { font-family:‘Cormorant Garamond’, serif; font-size:1.1rem; color:var(–white); font-weight:300; }
+.horaire-time.closed { color:rgba(253,251,247,0.3); font-family:‘Jost’, sans-serif; font-size:0.8rem; }
+.urgence-note {
+margin-top:32px; padding:20px 24px;
+background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+display:flex; align-items:center; gap:16px;
+}
+.urgence-note p { font-size:0.84rem; color:rgba(253,251,247,0.5); font-weight:300; line-height:1.6; }
+.urgence-note strong { color:rgba(253,251,247,0.8); }
+
+/* SUCCESS */
+.success-msg {
+display:none; text-align:center; padding:24px;
+background:var(–beige2); border:var(–line);
+margin-top:16px;
+}
+.success-msg.show { display:block; }
+.success-msg p { font-size:0.9rem; color:var(–accent); font-weight:500; }
+
+@media(max-width:900px){
+.contact-main { grid-template-columns:1fr; min-height:auto; }
+.contact-left { border-right:none; border-bottom:var(–line); }
+.form-row { grid-template-columns:1fr; }
+.horaires-grid { grid-template-columns:1fr; }
+.horaire-item { border-right:none; }
+.horaire-item:nth-last-child(-n+2) { border-bottom:1px solid rgba(255,255,255,0.08); }
+.horaire-item:last-child { border-bottom:none; }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><strong>T3</strong> Clinique</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="equipe.html">Équipe</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="contact.html" class="nav-cta active">Rendez-vous</a></li>
+  </ul>
+</nav>
+
+<!-- CONTACT PRINCIPAL -->
+
+<div class="contact-main">
+
+  <!-- INFOS -->
+
+  <div class="contact-left">
+    <div class="section-tag fade-up d1"><div class="section-tag-line"></div><span>Nous trouver</span></div>
+    <h2 class="fade-up d2">Venez nous<br><em>rendre visite</em></h2>
+    <p class="subtitle fade-up d3">Notre clinique est facilement accessible en transports en commun et dispose d'un stationnement gratuit à proximité.</p>
+
+```
+<div class="info-blocks">
+  <div class="info-block reveal">
+    <div class="info-icon">📍</div>
+    <div>
+      <h4>Adresse</h4>
+      <p>1234 Rue Sainte-Catherine Ouest<br>Montréal, QC H3G 1P1</p>
+    </div>
+  </div>
+  <div class="info-block reveal">
+    <div class="info-icon">📞</div>
+    <div>
+      <h4>Téléphone</h4>
+      <p><a href="tel:5145550192">(514) 555-0192</a></p>
+    </div>
+  </div>
+  <div class="info-block reveal">
+    <div class="info-icon">✉️</div>
+    <div>
+      <h4>Email</h4>
+      <p><a href="mailto:contact@t3clinique.ca">contact@t3clinique.ca</a></p>
+    </div>
+  </div>
+  <div class="info-block reveal">
+    <div class="info-icon">🚇</div>
+    <div>
+      <h4>Transports</h4>
+      <p>Métro ligne verte — Peel (3 min à pied)<br>Bus 15, 24 — Arrêt Sainte-Catherine</p>
+    </div>
+  </div>
+  <div class="info-block reveal">
+    <div class="info-icon">♿</div>
+    <div>
+      <h4>Accessibilité</h4>
+      <p>Locaux entièrement accessibles PMR<br>Interprétariat disponible sur demande</p>
+    </div>
+  </div>
+</div>
+
+<div class="map-placeholder reveal">
+  <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=60" alt="Carte Montréal T3 Clinique">
+  <div class="map-placeholder-content">
+    <div class="map-icon">📍</div>
+    <p>1234 Rue Sainte-Catherine Ouest</p>
+    <small>Montréal, QC H3G 1P1</small>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- FORMULAIRE -->
+
+  <div class="contact-right">
+    <div class="section-tag fade-up d1"><div class="section-tag-line"></div><span>Demande de rendez-vous</span></div>
+    <h2 class="fade-up d2">Réservez votre<br><em>créneau</em></h2>
+    <p class="subtitle fade-up d3">Remplissez ce formulaire. Notre équipe vous confirme votre rendez-vous sous 24h ouvrées.</p>
+
+```
+<div class="form-row">
+  <div class="form-group reveal">
+    <label for="prenom">Prénom *</label>
+    <input type="text" id="prenom" placeholder="Jean" required>
+  </div>
+  <div class="form-group reveal">
+    <label for="nom">Nom *</label>
+    <input type="text" id="nom" placeholder="Dupont" required>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group reveal">
+    <label for="tel">Téléphone *</label>
+    <input type="tel" id="tel" placeholder="(514) 555-0000" required>
+  </div>
+  <div class="form-group reveal">
+    <label for="email">Email *</label>
+    <input type="email" id="email" placeholder="jean@exemple.com" required>
+  </div>
+</div>
+<div class="form-group reveal">
+  <label for="medecin">Médecin souhaité</label>
+  <select id="medecin">
+    <option value="">Aucune préférence</option>
+    <option>Dr. Amira Sayah</option>
+    <option>Dr. Fredic Patric Kenfack Nguefack</option>
+    <option>Dr. Sophie Bernard</option>
+    <option>Dr. Ahmed Karim</option>
+  </select>
+</div>
+<div class="form-group reveal">
+  <label for="motif">Motif de consultation *</label>
+  <select id="motif" required>
+    <option value="">Sélectionner un motif</option>
+    <option>Consultation générale</option>
+    <option>Renouvellement d'ordonnance</option>
+    <option>Bilan de santé</option>
+    <option>Vaccination</option>
+    <option>Consultation pédiatrique</option>
+    <option>Certificat médical</option>
+    <option>Téléconsultation</option>
+    <option>Autre</option>
+  </select>
+</div>
+<div class="form-group reveal">
+  <label for="message">Message (optionnel)</label>
+  <textarea id="message" placeholder="Précisez votre demande si nécessaire..."></textarea>
+</div>
+<button class="btn-submit reveal" id="submitBtn" type="button">Envoyer ma demande →</button>
+<p class="form-note reveal">* Champs obligatoires. Vos données sont traitées de manière confidentielle.</p>
+<div class="success-msg" id="successMsg">
+  <p>✓ Votre demande a bien été envoyée ! Nous vous contacterons sous 24h ouvrées.</p>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- HORAIRES -->
+
+<section id="horaires">
+  <div class="section-tag reveal" style="justify-content:center;"><div class="section-tag-line" style="background:rgba(253,251,247,0.2);"></div><span style="color:rgba(253,251,247,0.4);">Nos horaires</span></div>
+  <h2 class="reveal" style="text-align:center;">Disponibles <em>6 jours</em> sur 7</h2>
+  <div class="horaires-grid reveal">
+    <div class="horaire-item"><span class="horaire-day">Lundi</span><span class="horaire-time">8h00 – 19h00</span></div>
+    <div class="horaire-item"><span class="horaire-day">Mardi</span><span class="horaire-time">8h00 – 19h00</span></div>
+    <div class="horaire-item"><span class="horaire-day">Mercredi</span><span class="horaire-time">8h00 – 19h00</span></div>
+    <div class="horaire-item"><span class="horaire-day">Jeudi</span><span class="horaire-time">8h00 – 19h00</span></div>
+    <div class="horaire-item"><span class="horaire-day">Vendredi</span><span class="horaire-time">8h00 – 18h00</span></div>
+    <div class="horaire-item"><span class="horaire-day">Samedi</span><span class="horaire-time">9h00 – 13h00</span></div>
+    <div class="horaire-item" style="grid-column:1/-1;"><span class="horaire-day">Dimanche</span><span class="horaire-time closed">Fermé</span></div>
+  </div>
+  <div class="urgence-note reveal">
+    <span style="font-size:1.5rem;">🚨</span>
+    <p><strong>En cas d'urgence médicale</strong>, composez le <strong>911</strong> ou rendez-vous à l'urgence la plus proche. Pour une urgence non critique hors heures d'ouverture, contactez Info-Santé au <strong>811</strong>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo"><strong>T3</strong> Clinique</div>
+      <p class="footer-desc">Clinique de médecine générale à Montréal, dédiée à votre santé et à celle de votre famille.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">1234 Rue Sainte-Catherine O.<br>Montréal, QC H3G 1P1</a></li>
+        <li><a href="tel:5145550192">(514) 555-0192</a></li>
+        <li><a href="mailto:contact@t3clinique.ca">contact@t3clinique.ca</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 T3 Clinique — Montréal, Québec</span>
+    <div class="footer-bottom-links">
+      <a href="#">Mentions légales</a>
+      <a href="#">Confidentialité</a>
+      <a href="#">Accessibilité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); }});
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+document.getElementById('submitBtn').addEventListener('click', function() {
+  const prenom = document.getElementById('prenom').value.trim();
+  const motif = document.getElementById('motif').value;
+  if (prenom && motif) {
+    this.textContent = '✓ Demande envoyée !';
+    this.style.background = '#5a7a52';
+    this.disabled = true;
+    document.getElementById('successMsg').classList.add('show');
+  } else {
+    this.textContent = 'Veuillez remplir les champs obligatoires';
+    this.style.background = '#8B4B3A';
+    setTimeout(() => {
+      this.textContent = 'Envoyer ma demande →';
+      this.style.background = 'var(--accent)';
+    }, 2500);
+  }
+});
+</script>
+
+</body>
+</html>
